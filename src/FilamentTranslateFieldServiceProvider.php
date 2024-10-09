@@ -8,13 +8,9 @@ use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
-use Illuminate\Filesystem\Filesystem;
-use Livewire\Features\SupportTesting\Testable;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use CodeWithDennis\FilamentTranslateField\Commands\FilamentTranslateFieldCommand;
-use CodeWithDennis\FilamentTranslateField\Testing\TestsFilamentTranslateField;
 
 class FilamentTranslateFieldServiceProvider extends PackageServiceProvider
 {
@@ -24,18 +20,10 @@ class FilamentTranslateFieldServiceProvider extends PackageServiceProvider
 
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package->name(static::$name)
-            ->hasCommands($this->getCommands())
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->publishConfigFile()
-                    ->publishMigrations()
-                    ->askToRunMigrations()
                     ->askToStarRepoOnGitHub('codewithdennis/filament-translate-field');
             });
 
@@ -45,16 +33,8 @@ class FilamentTranslateFieldServiceProvider extends PackageServiceProvider
             $package->hasConfigFile();
         }
 
-        if (file_exists($package->basePath('/../database/migrations'))) {
-            $package->hasMigrations($this->getMigrations());
-        }
-
         if (file_exists($package->basePath('/../resources/lang'))) {
             $package->hasTranslations();
-        }
-
-        if (file_exists($package->basePath('/../resources/views'))) {
-            $package->hasViews(static::$viewNamespace);
         }
     }
 
@@ -62,7 +42,6 @@ class FilamentTranslateFieldServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        // Asset Registration
         FilamentAsset::register(
             $this->getAssets(),
             $this->getAssetPackageName()
@@ -73,20 +52,7 @@ class FilamentTranslateFieldServiceProvider extends PackageServiceProvider
             $this->getAssetPackageName()
         );
 
-        // Icon Registration
         FilamentIcon::register($this->getIcons());
-
-        // Handle Stubs
-        if (app()->runningInConsole()) {
-            foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
-                $this->publishes([
-                    $file->getRealPath() => base_path("stubs/filament-translate-field/{$file->getFilename()}"),
-                ], 'filament-translate-field-stubs');
-            }
-        }
-
-        // Testing
-        Testable::mixin(new TestsFilamentTranslateField);
     }
 
     protected function getAssetPackageName(): ?string
@@ -101,8 +67,8 @@ class FilamentTranslateFieldServiceProvider extends PackageServiceProvider
     {
         return [
             // AlpineComponent::make('filament-translate-field', __DIR__ . '/../resources/dist/components/filament-translate-field.js'),
-            Css::make('filament-translate-field-styles', __DIR__ . '/../resources/dist/filament-translate-field.css'),
-            Js::make('filament-translate-field-scripts', __DIR__ . '/../resources/dist/filament-translate-field.js'),
+            //            Css::make('filament-translate-field-styles', __DIR__ . '/../resources/dist/filament-translate-field.css'),
+            //            Js::make('filament-translate-field-scripts', __DIR__ . '/../resources/dist/filament-translate-field.js'),
         ];
     }
 
@@ -112,7 +78,7 @@ class FilamentTranslateFieldServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            FilamentTranslateFieldCommand::class,
+
         ];
     }
 
@@ -146,7 +112,7 @@ class FilamentTranslateFieldServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_filament-translate-field_table',
+
         ];
     }
 }

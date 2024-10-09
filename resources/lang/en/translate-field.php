@@ -1,6 +1,6 @@
 <?php
 
-// translations for CodeWithDennis/FilamentTranslateField
 return [
-    //
+    'Translate' => 'Translate',
+    'Original' => 'Original',
 ];
