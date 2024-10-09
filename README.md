@@ -4,7 +4,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/codewithdennis/filament-translate-field/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/codewithdennis/filament-translate-field/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/codewithdennis/filament-translate-field.svg?style=flat-square)](https://packagist.org/packages/codewithdennis/filament-translate-field)
 
-![thumbnail.png](https://raw.githubusercontent.com/CodeWithDennis/filament-translate-field/refs/heads/main/thumbnail.png)
+![thumbnail](https://github.com/CodeWithDennis/filament-translate-field/blob/main/thumbnail.png)
 
 This package allows you to quickly translate form field values, like converting a description from German to English, with just one click. It's an efficient solution for instantly translating content in your forms.
 
