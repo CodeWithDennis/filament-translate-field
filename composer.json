@@ -1,10 +1,20 @@
 {
     "name": "codewithdennis/filament-translate-field",
-    "description": "A plugin that lets you translate input of any field to another language.",
+    "description": "This package allows you to quickly translate filamentphp form field values, like converting a description from German to English, with just one click. It's an efficient solution for instantly translating content in your forms.",
     "keywords": [
         "CodeWithDennis",
         "laravel",
-        "filament-translate-field"
+        "filament-translate-field",
+        "filamentphp",
+        "forms",
+        "translate",
+        "google-translate",
+        "filament",
+        "php",
+        "forms",
+        "plugin",
+        "plugins",
+        "package"
     ],
     "homepage": "https://github.com/codewithdennis/filament-translate-field",
     "support": {
