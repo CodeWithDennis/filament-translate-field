@@ -31,11 +31,10 @@ class TranslateAction extends Action
 
     private function translate(): Closure
     {
-        return function (array $data, Set $set, $livewire) {
-            $field = $livewire->mountedFormComponentActionsComponents[0];
-            $field = str($field)->afterLast('.')->value();
+        return function (array $data, Set $set) {
+            $column = $this->getComponent()->getStatePath(false);
 
-            $set($field, $data['translation']);
+            $set($column, $data['translation']);
         };
     }
 
@@ -65,14 +64,13 @@ class TranslateAction extends Action
                         ->columns()
                         ->live(),
                     Select::make('language')
-                        ->afterStateUpdated(function (Set $set, Get $get, $state, GoogleTranslate $googleTranslate, $livewire) {
+                        ->afterStateUpdated(function (Set $set, Get $get, $state, GoogleTranslate $googleTranslate) {
                             if (! empty($state)) {
                                 $googleTranslate->setTarget($state);
-                                $googleTranslate->setSource(config('filament-translate-field.auto_detect') ? $get('original_language') : null);
+                                $googleTranslate->setSource(! config('filament-translate-field.auto_detect') ? $get('original_language') : null);
 
-                                $field = $livewire->mountedFormComponentActionsComponents[0];
-                                $field = str($field)->afterLast('.')->value();
-                                $field = $livewire->data[$field];
+                                $component = $this->getComponent();
+                                $field = $component->getRecord()->{$component->getStatePath(false)};
 
                                 $set('original', $field);
                                 $set('translation', $googleTranslate->translate($field));
