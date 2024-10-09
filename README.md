@@ -35,16 +35,33 @@ return [
     'auto_detect' => true,
     'languages' => [
         'en' => 'English',
-//        'es' => 'Spanish',
-//        'fr' => 'French',
-//        'de' => 'German',
-//        'it' => 'Italian',
-//        'nl' => 'Dutch',
+    ],
+];
+```
+## Languages
+
+You can add more languages to the "languages" array in the config file. The key should be the language code, and the value is the language name.
+
+```php
+return [
+    'languages' => [
+        'en' => 'English',
+        'es' => 'Spanish',
     ],
 ];
 ```
 
-You can add more languages to the "languages" array in the config file. The key should be the language code, and the value is the language name. You can also use the "auto_detect" option to automatically identify the language of the input text. If you prefer, you can replace the array with an enum instead.
+You can also replace the array with an enum. For more details, visit this FilamentPHP [documentation](https://filamentphp.com/docs/3.x/support/enums) on enums.
+
+```php
+return [
+    'languages' => App\Enums\AllowedLanguages::class,
+];
+```
+
+## Auto Detect
+
+By default, the auto-detect feature is **enabled**. This means that the package will automatically detect the language of the text you want to translate. If you want to disable this feature, you can set the "auto_detect" key to false in the config file. When this feature is disabled a new dropdown will show with the allowed languages.
 
 ## Usage
 
