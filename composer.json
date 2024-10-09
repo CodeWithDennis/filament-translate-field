@@ -1,6 +1,6 @@
 {
     "name": "codewithdennis/filament-translate-field",
-    "description": "This package allows you to quickly translate filamentphp form field values, like converting a description from German to English, with just one click. It's an efficient solution for instantly translating content in your forms.",
+    "description": "This package allows you to quickly translate filamentphp form field values, like converting a description from Dutch to English, with just one click. It's an efficient solution for instantly translating content in your forms.",
     "keywords": [
         "CodeWithDennis",
         "laravel",
