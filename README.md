@@ -55,13 +55,21 @@ You can also replace the array with an enum. For more details, visit this Filame
 
 ```php
 return [
-    'languages' => App\Enums\AllowedLanguages::class,
+    'languages' => App\Enums\Languages::class,
 ];
 ```
 
 ## Auto Detect
-
 By default, the auto-detect feature is **enabled**. This means that the package will automatically detect the language of the text you want to translate. If you want to disable this feature, you can set the "auto_detect" key to false in the config file. When this feature is disabled a new dropdown will show with the allowed languages.
+
+## Read Only
+If you would like the user not to be able to submit the translation, you can disable the buttons by setting the **modalSubmitAction** and **modalCancelAction** to `false` just like any other action in Filament.
+
+```php
+TranslateAction::make()
+    ->modalSubmitAction(false)
+    ->modalCancelAction(false),
+```
 
 ## Usage
 
